@@ -174,21 +174,53 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
+    <Compile Include="Controllers\UserEventsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRole.cs" />
-    <Compile Include="Models\AspNetUser.cs" />
-    <Compile Include="Models\AvailableTime.cs" />
-    <Compile Include="Models\Booking.cs" />
-    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AvailableTime.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Booking.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Event.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\Language.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Tutor.cs" />
-    <Compile Include="Models\TutorGetModel.cs" />
+    <Compile Include="Models\Tutor.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TutorGetModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TutorGetModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TutorGetModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TutorGetModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TutorGetModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserEvent.cs">
+      <DependentUpon>TutorGetModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -407,6 +439,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Image\home.jpg" />
+    <Content Include="Models\TutorGetModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TutorGetModel.edmx</DependentUpon>
+      <LastGenOutput>TutorGetModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TutorGetModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TutorGetModel.edmx</DependentUpon>
+      <LastGenOutput>TutorGetModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -563,6 +605,13 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <EntityDeploy Include="Models\TutorGetModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TutorGetModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TutorGetModel.edmx.diagram">
+      <DependentUpon>TutorGetModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -630,6 +679,11 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\UserEvents\Create.cshtml" />
+    <Content Include="Views\UserEvents\Delete.cshtml" />
+    <Content Include="Views\UserEvents\Details.cshtml" />
+    <Content Include="Views\UserEvents\Edit.cshtml" />
+    <Content Include="Views\UserEvents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

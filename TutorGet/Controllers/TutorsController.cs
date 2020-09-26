@@ -12,7 +12,7 @@ namespace TutorGet.Controllers
 {
     public class TutorsController : Controller
     {
-        private TutorGetModel db = new TutorGetModel();
+        private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
 
         // GET: Tutors
         public ActionResult Index()

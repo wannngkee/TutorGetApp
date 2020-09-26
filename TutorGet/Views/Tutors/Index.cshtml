@@ -26,9 +26,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Rate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
+            @if (User.IsInRole("admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+            }
             <th>
                 @Html.DisplayNameFor(model => model.Language.LanguageName)
             </th>
@@ -39,33 +42,49 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Experience)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HourlyPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rate)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HourlyPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            @if (User.IsInRole("admin"))
+            {
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Language.LanguageName)
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.LanguageName)
+            </td>
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                 <span>
+                 <a href="@Url.Action("Edit", "Tutors", new { id = item.Id })" class="glyphicon glyphicon-edit" aria-label="Edit">
+                 </a> |
+                 <a href="@Url.Action("Delete", "Tutors", new { id = item.Id })" class="glyphicon glyphicon-trash" aria-label="Delete">
+                 </a>
+                 </span>
+                }
+                else
+                {
+                <span>
+                <a href="@Url.Action("Index", "Bookings", new { id = item.Id })" class="glyphicon glyphicon-plus-sign" aria-label="Edit">
+                </a> @*|
+                <a href="@Url.Action("Delete", "Tutors", new { id = item.Id })" class="glyphicon glyphicon-envelope" aria-label="Delete">
+                </a>*@
+                </span>
+                }
                 </td>
-                <td>
-                    <a href="@Url.Action("Edit","Tutors",new { id = item.Id })" class="glyphicon glyphicon-edit" aria-label="Edit">
-                    </a> &nbsp;|&nbsp;
-                    @*@Html.ActionLink("", "Details", new { id = item.Id }) |*@
-                    <a href="@Url.Action("Delete","Tutors",new { id = item.Id })" class="glyphicon glyphicon-trash" aria-label="Delete">
-                    </a>
-                </td>
-            </tr>
+        </tr>
         }
     </tbody>
 </table>
