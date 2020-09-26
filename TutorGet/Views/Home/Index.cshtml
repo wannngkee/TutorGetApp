@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href="~/Content/homepage.css" rel="stylesheet" />
+<div class="jumbotro">
+    <h1>TutorGet</h1>
+    <p class="lead">
+        <i>Find the Perfect Language Tutor for You!</i>
+    </p>
+    <div class="col-md-2">
+        <a href="@Url.Action("Index","Tutors")" class="btn btn-primary btn-lg">Search tutor &raquo;</a>
+    </div>
+    <div class="col-md-10">
+        <a href="@Url.Action("About","Home")" class="btn btn-primary btn-lg">Learn more &raquo;</a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Learning</h2>
+        <p>improve your study experience </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Report</h2>
+        <p>trace your lesson records </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Events</h2>
+        <p>view event description & location</p>
+    </div>
+</div>

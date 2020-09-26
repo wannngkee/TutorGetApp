@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TutorGet.Models.Event>
+
+@{
+    ViewBag.Title = "Language Exchange Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div id="map" style="height:300px"></div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="coordinates">
+            <td>
+                @Html.DisplayFor(modelItem => item.EventName)
+            </td>
+            <td class="description">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="time">
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td class="address">
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td class="latitude">
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td class="longitude">
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","Events",new { id = item.Id })" class="glyphicon glyphicon-edit" aria-label="Edit">
+                </a> &nbsp;|&nbsp;
+                <a href="@Url.Action("Delete","Events",new { id = item.Id })" class="glyphicon glyphicon-trash" aria-label="Delete">
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/mapbox")
+}
