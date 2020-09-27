@@ -5,18 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Edit Your Profile</h2>
+<div id="myAlert" class="alert alert-success collapse">
+ You profile has been successfully updated!
+</div>
 
 
 @using (Html.BeginForm())
 {
+
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
-    <h4>AspNetUser</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.EmailConfirmed)
+    @Html.HiddenFor(model => model.PasswordHash)
+    @Html.HiddenFor(model => model.SecurityStamp)
+    @Html.HiddenFor(model => model.PhoneNumberConfirmed)
+    @Html.HiddenFor(model => model.TwoFactorEnabled)
+    @Html.HiddenFor(model => model.LockoutEndDateUtc)
+    @Html.HiddenFor(model => model.LockoutEnabled)
+    @Html.HiddenFor(model => model.AccessFailedCount)
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,16 +54,24 @@
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
     </div>
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input id="savebtn" type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 </div>
 }
 
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#savebtn").click(function () {
+                $("#myAlert").show();
+            })
+        });
+    </script>
+
 }

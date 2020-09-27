@@ -16,9 +16,12 @@ namespace TutorGet.Controllers
         private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
 
         // GET: UserEvents
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.UserEvents.ToList());
+            var userId = User.Identity.GetUserId();
+            var userEvents = db.UserEvents.Where(s => s.UserId == userId).ToList();
+            return View(userEvents);
         }
 
         // GET: UserEvents/Details/5
@@ -50,7 +53,9 @@ namespace TutorGet.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "Id,UserId,EventId")] UserEvent userEvent)
         {
-
+            userEvent.UserId = User.Identity.GetUserId();
+            ModelState.Clear();
+            TryValidateModel(userEvent);
 
             if (ModelState.IsValid)
             {

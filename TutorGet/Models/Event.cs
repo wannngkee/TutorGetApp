@@ -22,13 +22,15 @@ namespace TutorGet.Models
         }
     
         public int Id { get; set; }
+
         [Required]
-        [Display(Name ="Event")]
+        [Display(Name = "Event")]
         public string EventName { get; set; }
         [Required]
         public string Description { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yy HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
+        [Required]
         public System.DateTime Time { get; set; }
         [Required]
         public string Address { get; set; }

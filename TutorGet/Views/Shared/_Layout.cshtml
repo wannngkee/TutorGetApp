@@ -48,9 +48,9 @@ geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
                     {
                         <li>@Html.ActionLink("Users", "Index", "Users")</li>
                     }
-                    @*else if ((User.Identity.IsAuthenticated) && (!User.IsInRole("admin")))
+                    else if ((User.Identity.IsAuthenticated) && (!User.IsInRole("admin")))
                     {
-                        <li>@Html.ActionLink("Profile", "Edit", "Users")</li>*@
+                        <li>@Html.ActionLink("Profile", "Edit", "Users")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

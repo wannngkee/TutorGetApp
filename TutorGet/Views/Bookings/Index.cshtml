@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TutorGet.Models.Booking>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Booking Calendar</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div id="calendar"></div>
+<div style="display: none">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tutor.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="bookings">
+                <td class="dateTime">
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td class="tutor">
+                    @Html.DisplayFor(modelItem => item.Tutor.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@section Scripts {
+
+   @Scripts.Render("~/bundles/fullcalendar")
+
+}

@@ -15,7 +15,7 @@ namespace TutorGet.Controllers
         private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
 
         // GET: Tutors
-        public ActionResult Index()
+        public ActionResult Index ()
         {
             var tutors = db.Tutors.Include(t => t.Language);
             return View(tutors.ToList());
@@ -128,5 +128,7 @@ namespace TutorGet.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

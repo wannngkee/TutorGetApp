@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,19 +17,23 @@ namespace TutorGet.Controllers
         private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
 
         // GET: Users
+        [Authorize(Roles ="admin")]
         public ActionResult Index()
         {
             return View(db.AspNetUsers.ToList());
         }
 
         // GET: Users/Details/5
-        public ActionResult Details(string id)
+        [Authorize]
+        public ActionResult Details()//string id
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+            string userId = User.Identity.GetUserId();
+            //if (id == null)
+            //{
+            //   return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            
+            AspNetUser aspNetUser = db.AspNetUsers.Find(userId);          
             if (aspNetUser == null)
             {
                 return HttpNotFound();
@@ -60,14 +65,16 @@ namespace TutorGet.Controllers
         }
 
         // GET: Users/Edit/5
-        public ActionResult Edit(string id)
-        {
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+        public ActionResult Edit()
+        {
+            string userId = User.Identity.GetUserId();
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            AspNetUser aspNetUser = db.AspNetUsers.Find(userId);
             if (aspNetUser == null)
             {
                 return HttpNotFound();
@@ -80,13 +87,13 @@ namespace TutorGet.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Address")] AspNetUser aspNetUser)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(aspNetUser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
             return View(aspNetUser);
         }
@@ -109,6 +116,7 @@ namespace TutorGet.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             AspNetUser aspNetUser = db.AspNetUsers.Find(id);

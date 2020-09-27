@@ -21,8 +21,7 @@ namespace TutorGet.Models
             this.AvailableTimes = new HashSet<AvailableTime>();
             this.Bookings = new HashSet<Booking>();
         }
-
-        [Required]
+    
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
@@ -30,7 +29,7 @@ namespace TutorGet.Models
         [Display(Name = "Experience(years)")]
         public double Experience { get; set; }
         [Required]
-        [Display(Name ="Price($/h)")]
+        [Display(Name = "Price($/h)")]
         public double HourlyPrice { get; set; }
         [Required]
         public string Rate { get; set; }

@@ -25,6 +25,13 @@ namespace TutorGet
             bundles.Add(new ScriptBundle("~/bundles/mapbox").Include(
                  "~/Scripts/mapbox.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+                   "~/Scripts/jquery-{version}.min.js",
+                   "~/Scripts/moment.min.js",
+                   "~/Scripts/fullcalendar.js",
+                   "~/Scripts/calendar.js"
+));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
