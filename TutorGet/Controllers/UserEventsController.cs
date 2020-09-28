@@ -42,6 +42,7 @@ namespace TutorGet.Controllers
         // GET: UserEvents/Create
         public ActionResult Create()
         {
+            ViewBag.EventId = new SelectList(db.Events, "Id", "Name");
             return View();
         }
 

@@ -17,6 +17,10 @@
 geocoder.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-
 geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
+    @*This is for calendar*@
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
 
 </head>
 <body>
@@ -32,7 +36,6 @@ geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
@@ -78,10 +81,4 @@ geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
     @RenderSection("scripts", required: false)
 </body>
 </html>
-<script>
-    $(function () {
-        $.validator.methods.date = function (value, element) {
-            return this.optional(element) || moment(value, "DD/MM/YY HH:mm", true).isValid();
-        }
-    });
-</script>
+

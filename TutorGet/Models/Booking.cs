@@ -16,15 +16,11 @@ namespace TutorGet.Models
     public partial class Booking
     {
         public int Id { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yy HH:mm}", ApplyFormatInEditMode = true)]
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
-        [Required]
-        [Display(Name = "Lesson Time")]
-        public string DateTime { get; set; }
-        [Required]
+        public System.DateTime BookingTime { get; set; }
         public string UserId { get; set; }
-        [Required]
-        [Display(Name ="Tutor")]
         public int TutorId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

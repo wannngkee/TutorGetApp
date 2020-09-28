@@ -28,10 +28,10 @@ namespace TutorGet.Models
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AvailableTime> AvailableTimes { get; set; }
-        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Tutor> Tutors { get; set; }
         public virtual DbSet<UserEvent> UserEvents { get; set; }
+        public virtual DbSet<Booking> Bookings { get; set; }
     }
 }

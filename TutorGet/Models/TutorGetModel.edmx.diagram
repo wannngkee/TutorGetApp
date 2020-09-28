@@ -8,18 +8,18 @@
         <EntityTypeShape EntityType="TutorGetModel.AspNetRole" Width="1.5" PointX="9" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TutorGetModel.AspNetUser" Width="1.5" PointX="7" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TutorGetModel.AvailableTime" Width="1.5" PointX="0.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="TutorGetModel.Booking" Width="1.5" PointX="4.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TutorGetModel.Event" Width="1.5" PointX="2.625" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TutorGetModel.Language" Width="1.5" PointX="0.5" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TutorGetModel.Tutor" Width="1.5" PointX="2.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TutorGetModel.UserEvent" Width="1.5" PointX="4.75" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="TutorGetModel.FK_UserBooking" ManuallyRouted="false" />
         <AssociationConnector Association="TutorGetModel.FK_UserUserEvents" ManuallyRouted="false" />
         <AssociationConnector Association="TutorGetModel.FK_AvailableTimeTutor" ManuallyRouted="false" />
-        <AssociationConnector Association="TutorGetModel.FK_TutorBooking" ManuallyRouted="false" />
         <AssociationConnector Association="TutorGetModel.FK_EventUserEvents" ManuallyRouted="false" />
         <AssociationConnector Association="TutorGetModel.FK_LanguageTutor" ManuallyRouted="false" />
         <AssociationConnector Association="TutorGetModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TutorGetModel.Booking" Width="1.5" PointX="4.875" PointY="2.25" />
+        <AssociationConnector Association="TutorGetModel.FK_UserBooking1" />
+        <AssociationConnector Association="TutorGetModel.FK_TutorBooking1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

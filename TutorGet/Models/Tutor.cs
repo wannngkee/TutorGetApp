@@ -19,7 +19,7 @@ namespace TutorGet.Models
         public Tutor()
         {
             this.AvailableTimes = new HashSet<AvailableTime>();
-            this.Bookings = new HashSet<Booking>();
+            this.Bookings1 = new HashSet<Booking>();
         }
     
         public int Id { get; set; }
@@ -40,8 +40,8 @@ namespace TutorGet.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AvailableTime> AvailableTimes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Bookings { get; set; }
         public virtual Language Language { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Bookings1 { get; set; }
     }
 }

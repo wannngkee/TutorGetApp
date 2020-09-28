@@ -22,8 +22,8 @@ namespace TutorGet.Models
         }
     
         public int Id { get; set; }
-
-        [Display(Name ="Language")]
+        [Required]
+        [Display(Name = "Language")]
         public string LanguageName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

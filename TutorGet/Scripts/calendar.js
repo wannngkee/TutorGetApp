@@ -1,26 +1,29 @@
-﻿var bookings = [];
-$(".bookings").each(function () {
-    var tutor = $(".name", this).text().trim();
-    var dateTime = $(".dateTime", this).text().trim();
-    var booking = {
-        "tutor": tutor,
-        "dateTime": dateTime
+﻿var events = [];
+$(".events").each(function () {
+    var title = $(".title", this).text().trim();
+    var start = $(".start", this).text().trim();
+    var event = {
+        "title": "Lesson with " + title,
+        "start": start
     };
-    bookings.push(booking);
-
+    events.push(event);
 });
+
 
 $("#calendar").fullCalendar({
     locale: 'au',
-    bookings: bookings,
-
-    dayClick: function (date, allDay, jsBooking, view) {
-        var d = new Date(date);
-        var m = moment(d).format("YYYY-MM-DD");
-        m = encodeURIComponent(m);
-        var uri = "/Bookings/Create?date=" + m;
-        $(location).attr('href', uri);
-
+    events: events,
+    eventColor: '#064980',
+    timeFormat: 'HH:mm',
+    slotDuration: "01:00",
+    eventClick: function (calEvent, jsEvent, view) {
+        $('#myModal #eventTitle').text(calEvent.title);
+        var $description = $('<div/>');
+        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD/MM/YYYY HH:mm a")));
+        if (calEvent.end != null) {
+            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD/MM/YYYY HH:mm a")));
+        }
+        $('#myModal #pDetails').empty().html($description);
+        $('#myModal').modal("show");
     }
-
 });

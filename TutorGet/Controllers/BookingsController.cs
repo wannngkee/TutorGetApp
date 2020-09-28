@@ -25,6 +25,15 @@ namespace TutorGet.Controllers
             return View(bookLesson);
         }
 
+        //public JsonResult GetBookings()
+        //{
+        //   using (aspnetTutorGetEntities dc = new aspnetTutorGetEntities())
+        //    {
+        //        var bookings = dc.Bookings.ToList();
+        //        return new JsonResult { Data = bookings, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        //    }
+        //}
+
         // GET: Bookings/Details/5
         public ActionResult Details(int? id)
         {
@@ -43,8 +52,13 @@ namespace TutorGet.Controllers
         // GET: Bookings/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.TutorId = new SelectList(db.Tutors, "Id", "Name");
+            //if (null == date)
+            //    return RedirectToAction("Index");
+            //Booking b = new Booking();
+            //DateTime convertedDate = DateTime.Parse(date);
+            //b.BookingTime = convertedDate;
+            //return  View(b);
             return View();
         }
 
@@ -54,7 +68,7 @@ namespace TutorGet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "Id,DateTime,UserId,TutorId")] Booking booking)
+        public ActionResult Create([Bind(Include = "Id,BookingTime,UserId,TutorId")] Booking booking)
         {
             booking.UserId = User.Identity.GetUserId();
             ModelState.Clear();
