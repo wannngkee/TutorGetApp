@@ -17,13 +17,13 @@ $("#calendar").fullCalendar({
     timeFormat: 'HH:mm',
     slotDuration: "01:00",
     eventClick: function (calEvent, jsEvent, view) {
+        jQuery.noConflict();
+        $('#myModal').modal("show");
         $('#myModal #eventTitle').text(calEvent.title);
         var $description = $('<div/>');
-        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD/MM/YYYY HH:mm a")));
-        if (calEvent.end != null) {
-            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD/MM/YYYY HH:mm a")));
-        }
+        $description.append($('<p/>').html('<b>Start: </b>' + calEvent.start.format("DD/MM/YYYY HH:mm")));
+        $description.append($('<p/>').html('<b>Duration: 1 hour</b>'));
         $('#myModal #pDetails').empty().html($description);
-        $('#myModal').modal("show");
+
     }
 });

@@ -11,11 +11,14 @@ namespace TutorGet.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UserEvent
     {
         public int Id { get; set; }
+        [Display(Name ="User")]
         public string UserId { get; set; }
+        [Display(Name = "Event")]
         public int EventId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

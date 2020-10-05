@@ -5,7 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Edit Tutor Record</h2>
+@if (ViewBag.TheResult == true)
+{
+    <div id="myAlert" class="alert alert-success">
+        This tutor record has been updated successfully!
+    </div>
+}
+
 
 
 @using (Html.BeginForm())
@@ -13,7 +20,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Tutor</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -75,7 +81,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Tutor List", "Index")
 </div>
 
 @section Scripts {

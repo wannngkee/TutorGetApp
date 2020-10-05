@@ -11,6 +11,10 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
+else
+{
+    <h3>@Html.ActionLink("Check My Event Bookmark","Index","UserEvents")</h3>
+}
     <div id="map" style="height:300px"></div>
     <table class="table">
         <tr>
@@ -68,7 +72,7 @@
                     }
                     else
                     {
-                    <a href="@Url.Action("Create", "UserEvents", new { id = item.Id })" class="glyphicon glyphicon-bookmark" aria-label="bookmark">
+                    <a href="@Url.Action("Create", "UserEvents", new { eventid = item.Id })" class="glyphicon glyphicon-bookmark" aria-label="bookmark">
                     </a>
                     }
                 </td>

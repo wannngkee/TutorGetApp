@@ -20,7 +20,9 @@ namespace TutorGet.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public System.DateTime BookingTime { get; set; }
+        [Display(Name = "User")]
         public string UserId { get; set; }
+        [Display(Name = "Tutor")]
         public int TutorId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

@@ -15,6 +15,7 @@ namespace TutorGet.Controllers
         private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
 
         // GET: Tutors
+        [Authorize]
         public ActionResult Index ()
         {
             var tutors = db.Tutors.Include(t => t.Language);
@@ -37,6 +38,7 @@ namespace TutorGet.Controllers
         }
 
         // GET: Tutors/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.LanguageId = new SelectList(db.Languages, "Id", "LanguageName");
@@ -54,7 +56,8 @@ namespace TutorGet.Controllers
             {
                 db.Tutors.Add(tutor);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.TheResult = true;
+                //return RedirectToAction("Index");
             }
 
             ViewBag.LanguageId = new SelectList(db.Languages, "Id", "LanguageName", tutor.LanguageId);
@@ -62,6 +65,7 @@ namespace TutorGet.Controllers
         }
 
         // GET: Tutors/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,13 +92,15 @@ namespace TutorGet.Controllers
             {
                 db.Entry(tutor).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.TheResult = true;
+                //return RedirectToAction("Index");
             }
             ViewBag.LanguageId = new SelectList(db.Languages, "Id", "LanguageName", tutor.LanguageId);
             return View(tutor);
         }
 
         // GET: Tutors/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +123,9 @@ namespace TutorGet.Controllers
             Tutor tutor = db.Tutors.Find(id);
             db.Tutors.Remove(tutor);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            ViewBag.TheResult = true;
+            //return RedirectToAction("Index");
+            return View(tutor);
         }
 
         protected override void Dispose(bool disposing)

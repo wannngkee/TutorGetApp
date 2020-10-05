@@ -65,7 +65,7 @@ namespace TutorGet.Controllers
         }
 
         // GET: Users/Edit/5
-
+        [Authorize]
         public ActionResult Edit()
         {
             string userId = User.Identity.GetUserId();
@@ -94,11 +94,13 @@ namespace TutorGet.Controllers
             {
                 db.Entry(aspNetUser).State = EntityState.Modified;
                 db.SaveChanges();
+                ViewBag.TheResult = true;
             }
             return View(aspNetUser);
         }
 
         // GET: Users/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)

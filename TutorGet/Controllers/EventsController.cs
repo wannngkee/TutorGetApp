@@ -15,6 +15,7 @@ namespace TutorGet.Controllers
         private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
 
         // GET: Events
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Events.ToList());
@@ -36,6 +37,7 @@ namespace TutorGet.Controllers
         }
 
         // GET: Events/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -52,13 +54,15 @@ namespace TutorGet.Controllers
             {
                 db.Events.Add(@event);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.TheResult = true;
+                //return RedirectToAction("Index");
             }
 
             return View(@event);
         }
 
         // GET: Events/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,12 +88,14 @@ namespace TutorGet.Controllers
             {
                 db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.TheResult = true;
+                //return RedirectToAction("Index");
             }
             return View(@event);
         }
 
         // GET: Events/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,7 +118,9 @@ namespace TutorGet.Controllers
             Event @event = db.Events.Find(id);
             db.Events.Remove(@event);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            ViewBag.TheResult = true;
+            //return RedirectToAction("Index");
+            return View(@event);
         }
 
         protected override void Dispose(bool disposing)

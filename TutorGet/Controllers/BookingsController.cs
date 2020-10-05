@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using TutorGet.Models;
 
 namespace TutorGet.Controllers
-{
+{   
     public class BookingsController : Controller
     {
         private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
@@ -50,9 +50,11 @@ namespace TutorGet.Controllers
         }
 
         // GET: Bookings/Create
-        public ActionResult Create()
+        [Authorize]
+        public ActionResult Create(int tutorid)
         {
-            ViewBag.TutorId = new SelectList(db.Tutors, "Id", "Name");
+            ViewBag.TutorId = new SelectList(db.Tutors, "Id", "Name", tutorid);                           
+
             //if (null == date)
             //    return RedirectToAction("Index");
             //Booking b = new Booking();
@@ -77,7 +79,8 @@ namespace TutorGet.Controllers
             {
                 db.Bookings.Add(booking);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.TheResult = true;
+                //return RedirectToAction("Index");
             }
 
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", booking.UserId);
@@ -86,6 +89,7 @@ namespace TutorGet.Controllers
         }
 
         // GET: Bookings/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)

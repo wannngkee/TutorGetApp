@@ -21,6 +21,7 @@ namespace TutorGet.Controllers
         {
             var userId = User.Identity.GetUserId();
             var userEvents = db.UserEvents.Where(s => s.UserId == userId).ToList();
+
             return View(userEvents);
         }
 
@@ -40,9 +41,13 @@ namespace TutorGet.Controllers
         }
 
         // GET: UserEvents/Create
-        public ActionResult Create()
+        [Authorize]
+        public ActionResult Create(int eventid)
         {
-            ViewBag.EventId = new SelectList(db.Events, "Id", "Name");
+            //ViewBag.EventId = new SelectList(db.Events, "Id", "EventName", eventid);
+            ViewBag.Event = from eve in db.Events
+                             where eve.Id == eventid
+                             select eve;
             return View();
         }
 
@@ -58,17 +63,24 @@ namespace TutorGet.Controllers
             ModelState.Clear();
             TryValidateModel(userEvent);
 
-            if (ModelState.IsValid)
+            if (db.UserEvents.Any(e => e.EventId == userEvent.EventId && e.UserId == userEvent.UserId))
+            {
+                ViewBag.TheResult = false;
+            }
+
+            else if (ModelState.IsValid)
             {
                 db.UserEvents.Add(userEvent);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.TheResult = true;
+                //return RedirectToAction("Index");
             }
 
             return View(userEvent);
         }
 
         // GET: UserEvents/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -100,6 +112,7 @@ namespace TutorGet.Controllers
         }
 
         // GET: UserEvents/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,7 +135,9 @@ namespace TutorGet.Controllers
             UserEvent userEvent = db.UserEvents.Find(id);
             db.UserEvents.Remove(userEvent);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            ViewBag.TheResult = true;
+            //return RedirectToAction("Index");
+            return View(userEvent);
         }
 
         protected override void Dispose(bool disposing)
