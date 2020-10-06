@@ -25,14 +25,6 @@ namespace TutorGet.Controllers
             return View(bookLesson);
         }
 
-        //public JsonResult GetBookings()
-        //{
-        //   using (aspnetTutorGetEntities dc = new aspnetTutorGetEntities())
-        //    {
-        //        var bookings = dc.Bookings.ToList();
-        //        return new JsonResult { Data = bookings, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        //    }
-        //}
 
         // GET: Bookings/Details/5
         public ActionResult Details(int? id)
@@ -112,7 +104,7 @@ namespace TutorGet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,DateTime,UserId,TutorId")] Booking booking)
+        public ActionResult Edit([Bind(Include = "Id,BookingTime,UserId,TutorId")] Booking booking)
         {    
             if (ModelState.IsValid)
             {

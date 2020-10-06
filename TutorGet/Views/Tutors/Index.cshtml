@@ -78,9 +78,9 @@
                 {
                 <span>
                 <a href="@Url.Action("Create", "Bookings", new { tutorid = item.Id })" class="glyphicon glyphicon-plus-sign" aria-label="Edit">
-                </a> @*|
-                <a href="@Url.Action("Delete", "Tutors", new { id = item.Id })" class="glyphicon glyphicon-envelope" aria-label="Delete">
-                </a>*@
+                </a> |
+                <a href="@Url.Action("Send_Email", "Tutors", new { id = item.Id })" class="glyphicon glyphicon-envelope" aria-label="Delete">
+                </a>
                 </span>
                 }
                 </td>

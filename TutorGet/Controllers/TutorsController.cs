@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TutorGet.Models;
+using TutorGet.Utils;
 
 namespace TutorGet.Controllers
 {
@@ -137,6 +139,51 @@ namespace TutorGet.Controllers
             base.Dispose(disposing);
         }
 
-        
+        public ActionResult Send_Email(int id)
+        {
+            ViewBag.ToEmail = new SelectList(db.Tutors, "Id", "Email", id);
+            var userId = User.Identity.GetUserId();
+            var user = db.AspNetUsers.Find(userId);
+            var userEmail = user.Email;
+            ViewBag.Subject = "Message from TutorGet user " + userEmail;
+            return View(new SendEmailViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Send_Email(SendEmailViewModel model, int id)
+        {
+            //ViewBag.ToEmail = new SelectList(db.Tutors, "Id", "Email", id);
+            var tutor = db.Tutors.Find(id);
+            var tutoremail = tutor.Email;
+            var userId = User.Identity.GetUserId();
+            var user = db.AspNetUsers.Find(userId);
+            var userEmail = user.Email;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    String toEmail = tutoremail;
+                    String subject = "Message from user: " + userEmail;
+                    String contents = model.Contents;
+
+                    SendEmail se = new SendEmail();
+                    se.Send(toEmail, subject, contents);
+
+                    ViewBag.Result = "Email has been send successfully.";
+
+                    ModelState.Clear();
+
+                    return View();
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+
+            return View();
+        }
+
+
     }
 }

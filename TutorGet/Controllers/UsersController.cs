@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TutorGet.Models;
+using TutorGet.Utils;
 
 namespace TutorGet.Controllers
 {
@@ -134,6 +135,40 @@ namespace TutorGet.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Send_Email()
+        {
+            return View(new SendEmailViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Send_Email(SendEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    String toEmail = model.ToEmail;
+                    String subject = model.Subject;
+                    String contents = model.Contents;
+
+                    SendEmail se = new SendEmail();
+                    se.Send(toEmail, subject, contents);
+
+                    ViewBag.Result = "Email has been send.";
+
+                    ModelState.Clear();
+
+                    return View(new SendEmailViewModel());
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+
+            return View();
         }
     }
 }

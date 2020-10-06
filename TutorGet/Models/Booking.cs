@@ -19,6 +19,7 @@ namespace TutorGet.Models
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
+        [Display(Name = "Booking Time")]
         public System.DateTime BookingTime { get; set; }
         [Display(Name = "User")]
         public string UserId { get; set; }

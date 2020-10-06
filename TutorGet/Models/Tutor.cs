@@ -25,6 +25,7 @@ namespace TutorGet.Models
         public int Id { get; set; }
         [Required]
         [RegularExpression("[a-zA-Z]+$",ErrorMessage ="Invalid name")]
+        [Display(Name = "Tutor")]
         public string Name { get; set; }
         [Required]
         [Display(Name = "Experience(years)")]
