@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using TutorGet.Models;
@@ -18,7 +20,7 @@ namespace TutorGet.Controllers
         private aspnetTutorGetEntities db = new aspnetTutorGetEntities();
 
         // GET: Users
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.AspNetUsers.ToList());
@@ -33,8 +35,8 @@ namespace TutorGet.Controllers
             //{
             //   return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             //}
-            
-            AspNetUser aspNetUser = db.AspNetUsers.Find(userId);          
+
+            AspNetUser aspNetUser = db.AspNetUsers.Find(userId);
             if (aspNetUser == null)
             {
                 return HttpNotFound();
@@ -137,38 +139,53 @@ namespace TutorGet.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Send_Email()
+        [Authorize(Roles = "admin")]
+        public ActionResult EmailUser()
         {
-            return View(new SendEmailViewModel());
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Send_Email(SendEmailViewModel model)
-        {
-            if (ModelState.IsValid)
+        public ActionResult EmailUser(HttpPostedFileBase uploadFile)
+        {   
+            var userId = User.Identity.GetUserId();
+            var userList = db.AspNetUsers.ToList();
+            var emails = new List<String>();
+            foreach (var user in userList)
             {
-                try
+                if (user.Id != userId)
                 {
-                    String toEmail = model.ToEmail;
-                    String subject = model.Subject;
-                    String contents = model.Contents;
-
-                    SendEmail se = new SendEmail();
-                    se.Send(toEmail, subject, contents);
-
-                    ViewBag.Result = "Email has been send.";
-
-                    ModelState.Clear();
-
-                    return View(new SendEmailViewModel());
-                }
-                catch
-                {
-                    return View();
+                    String email = user.Email;
+                    emails.Add(email);
                 }
             }
-
-            return View();
+            string fileExtension = Path.GetExtension(uploadFile.FileName).ToLower();
+            if (fileExtension != ".pdf")
+            {
+                ViewBag.Alert = "Only pdf file is accepted.";
+                return View();
+            }
+            else 
+            {
+                if (uploadFile != null & uploadFile.ContentLength > 0)
+                {
+                    var filename = Path.GetFileName(uploadFile.FileName);
+                    byte[] fileInBytes = new byte[uploadFile.ContentLength];
+                    using (BinaryReader reader = new BinaryReader(uploadFile.InputStream))
+                    {
+                        fileInBytes = reader.ReadBytes(uploadFile.ContentLength);
+                    }
+                    string content = Convert.ToBase64String(fileInBytes);
+                    SendEmail se = new SendEmail();
+                    se.SendBunkAtt(emails, filename, content);
+                    ViewBag.Result = "Promotion email has been send to all the users.";
+                    ModelState.Clear();
+                    return View();
+                }
+                return View();
+            }
         }
+
     }
 }
+

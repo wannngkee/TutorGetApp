@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.Security.Application;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -144,8 +145,6 @@ namespace TutorGet.Controllers
             ViewBag.ToEmail = new SelectList(db.Tutors, "Id", "Email", id);
             var userId = User.Identity.GetUserId();
             var user = db.AspNetUsers.Find(userId);
-            var userEmail = user.Email;
-            ViewBag.Subject = "Message from TutorGet user " + userEmail;
             return View(new SendEmailViewModel());
         }
 
@@ -164,12 +163,12 @@ namespace TutorGet.Controllers
                 {
                     String toEmail = tutoremail;
                     String subject = "Message from user: " + userEmail;
-                    String contents = model.Contents;
+                    String contents = Sanitizer.GetSafeHtmlFragment(model.Contents);
 
                     SendEmail se = new SendEmail();
                     se.Send(toEmail, subject, contents);
 
-                    ViewBag.Result = "Email has been send successfully.";
+                    ViewBag.Result = "Email has been sent successfully.";
 
                     ModelState.Clear();
 

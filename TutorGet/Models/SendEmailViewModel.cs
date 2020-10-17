@@ -15,6 +15,9 @@ namespace TutorGet.Models
 
             [Required]
             public string Contents { get; set; }
+            
+            public HttpPostedFileBase Attachment { get; set; }
+
 
         }
 

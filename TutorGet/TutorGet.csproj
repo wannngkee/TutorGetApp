@@ -857,7 +857,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Users\Send_Email.cshtml" />
+    <Content Include="Views\Users\EmailUser.cshtml" />
     <Content Include="Views\Tutors\Send_Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
