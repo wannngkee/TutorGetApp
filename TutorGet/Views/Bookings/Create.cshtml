@@ -15,11 +15,18 @@
     </div>
 }
 
+@if (ViewBag.TheResult == false)
+{
+    <div id="myAlert" class="alert alert-danger">
+        Time clashes with another booked lesson!
+    </div>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    if (ViewBag.TheResult == null)
+    if (ViewBag.TheResult == null || ViewBag.TheResult == false)
     {
         <div class="form-horizontal">
             <hr />

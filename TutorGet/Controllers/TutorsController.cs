@@ -19,9 +19,17 @@ namespace TutorGet.Controllers
 
         // GET: Tutors
         [Authorize]
-        public ActionResult Index ()
+        public ActionResult Search ()
         {
-            var tutors = db.Tutors.Include(t => t.Language);
+            //var tutors = db.Tutors.Include(t => t.Language);
+           
+            return View();
+        }
+
+        public ActionResult Index(int languageId, string language)
+        {
+            var tutors = db.Tutors.Where(t => t.Language.Id == languageId && t.Language.LanguageName == language);
+            //var tutors = db.Tutors.Include(t => t.Language);
             return View(tutors.ToList());
         }
 

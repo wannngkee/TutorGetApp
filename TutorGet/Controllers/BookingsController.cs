@@ -46,13 +46,6 @@ namespace TutorGet.Controllers
         public ActionResult Create(int tutorid)
         {
             ViewBag.TutorId = new SelectList(db.Tutors, "Id", "Name", tutorid);                           
-
-            //if (null == date)
-            //    return RedirectToAction("Index");
-            //Booking b = new Booking();
-            //DateTime convertedDate = DateTime.Parse(date);
-            //b.BookingTime = convertedDate;
-            //return  View(b);
             return View();
         }
 
@@ -67,7 +60,11 @@ namespace TutorGet.Controllers
             booking.UserId = User.Identity.GetUserId();
             ModelState.Clear();
             TryValidateModel(booking);
-            if (ModelState.IsValid)
+            if (db.Bookings.Any(e => e.BookingTime == booking.BookingTime && e.UserId == booking.UserId))
+            {
+                ViewBag.TheResult = false;
+            }
+            else if (ModelState.IsValid)
             {
                 db.Bookings.Add(booking);
                 db.SaveChanges();
@@ -105,12 +102,17 @@ namespace TutorGet.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Edit([Bind(Include = "Id,BookingTime,UserId,TutorId")] Booking booking)
-        {    
-            if (ModelState.IsValid)
+        {
+
+            if (db.Bookings.Any(e => e.BookingTime == booking.BookingTime && e.UserId == booking.UserId))
+            {
+                ViewBag.TheResult = false;
+            }
+            else if (ModelState.IsValid)
             {
                 db.Entry(booking).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.TheResult = true;
             }
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", booking.UserId);
             ViewBag.TutorId = new SelectList(db.Tutors, "Id", "Name", booking.TutorId);

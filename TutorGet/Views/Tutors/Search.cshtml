@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<div class="jumbotro">
+    <h1>TutorGet</h1>
+</div>
+*@
+<h2>I want to learn...</h2>
+<hr/>
+<div class="row">
+    <div class="col-md-4 en">
+        <a href="@Url.Action("Index", "Tutors", new { languageId=1,language="English"}, null)">
+            <img src="~/Image/english.jpg" width="220" height="270" alt="English">
+        </a>
+    </div>
+    <div class="col-md-4 cn">
+        <a href="@Url.Action("Index", "Tutors", new { languageId=2,language="Chinese"}, null)">
+            <img src="~/Image/chinese.jpg" width="220" height="270" alt="Chinese">
+        </a>
+    </div>
+    <div class="col-md-4 jp">
+        <a href="@Url.Action("Index", "Tutors", new { languageId=3,language="Japanese"}, null)">
+            <img src="~/Image/japanese.jpg" width="220" height="270" alt="Japanese">
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 sp">
+        <a href="@Url.Action("Index", "Tutors", new { languageId=4,language = "Spanish"}, null)">
+            <img src="~/Image/spanish.jpg" width="220" height="270" alt="Spanish">
+        </a>
+    </div>
+    <div class="col-md-4 fr">
+        <a href="@Url.Action("Index", "Tutors", new { languageId=5,language = "French"}, null)">
+            <img src="~/Image/french.jpg" width="220" height="270" alt="French">
+        </a>
+    </div>
+    <div class="col-md-4 it">
+        <a href="@Url.Action("Index", "Tutors", new { languageId=6,language = "Italian"}, null)">
+            <img src="~/Image/italian.jpg" width="220" height="270" alt="Italian">
+        </a>
+    </div>
+</div>
+
+<style>
+    .row
+    {
+        padding-left:120px;
+        padding-right:120px;
+        padding-bottom:30px;
+    }
+</style>
+
