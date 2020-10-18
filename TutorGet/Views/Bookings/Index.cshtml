@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Booking Calendar</h2>
+<h2 style="text-align: center">@Html.ActionLink("Check My Booking Report", "Report", "Bookings")</h2>
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
@@ -65,6 +65,8 @@
         }
     </table>
 </div>
+
+
 
 @section Scripts {
 

@@ -2,6 +2,7 @@
 using Microsoft.Security.Application;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -26,11 +27,20 @@ namespace TutorGet.Controllers
             return View();
         }
 
-        public ActionResult Index(int languageId, string language)
+
+        public ActionResult Index([DefaultValue(0)] int languageId, string language)
         {
-            var tutors = db.Tutors.Where(t => t.Language.Id == languageId && t.Language.LanguageName == language);
-            //var tutors = db.Tutors.Include(t => t.Language);
-            return View(tutors.ToList());
+            if (languageId == 0 && language == null)
+            {
+                var tutors = db.Tutors.Include(t => t.Language);
+                return View(tutors.ToList());
+            }
+            else
+            {
+                var tutors = db.Tutors.Where(t => t.Language.Id == languageId && t.Language.LanguageName == language);
+                return View(tutors.ToList());
+            }
+           
         }
 
         // GET: Tutors/Details/5

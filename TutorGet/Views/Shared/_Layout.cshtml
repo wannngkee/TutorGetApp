@@ -20,7 +20,8 @@ geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
     @*This is for calendar*@
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
-
+    @*This is for Google chart*@
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
 <body>
@@ -40,7 +41,7 @@ geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Tutors", "Index", "Tutors")</li>
+                        <li>@Html.ActionLink("Tutors", "Search", "Tutors")</li>
                         <li>@Html.ActionLink("Events", "Index", "Events")</li>
                     }
                     @if ((User.Identity.IsAuthenticated) && (!User.IsInRole("admin")))

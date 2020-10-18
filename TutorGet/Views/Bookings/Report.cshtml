@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="text-align:center; font-weight:bold">Lesson Report</h2>
+<div style="text-align:right">
+    <a href="javascript:window.print()" class="btn btn-primary btn-md" 
+       style="border-color: #DF5F35 !important; background-color: #DF5F35 !important;">Print Report</a>
+</div>
+<div id="divPieChart" style="width: 650px; height: 400px; padding-left:120px; margin-bottom: -60px;">
+</div>
+<div id="divLineChart" style="width: 650px; height: 400px; padding-left:120px;">
+</div>
+
+<script>
+    google.load('visualization', '1', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        //Load Data Here
+        var chartData = null;
+        $.ajax({
+            url: '/Bookings/GetChartData',
+            type: 'GET',
+            dataType: 'json',
+            data: '',
+            success: function (d) {
+                chartData = d;
+            },
+            error: function () {
+                alert('Error!');
+            }
+        }).done(function () {
+            drawPieChart(chartData);
+        });
+    };
+    function drawPieChart(chartData) {
+        var data = google.visualization.arrayToDataTable(chartData);
+        var options = {
+            title: "Booked Lessons Language Distribution",
+            titleTextStyle: {
+                bold: true,
+                fontSize: 16
+            },
+            pointSize: 5,
+            is3D: true,
+            colors: ['#5B80B7', '#EA9A57', '#65A9C2', '#B25752', '#A1BA65','#7B669D']
+        };
+        var pieChart = new google.visualization.PieChart(document.getElementById('divPieChart'));
+        pieChart.draw(data, options);
+    }   
+</script>
+<script>
+    google.load('visualization', '1', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        //Load Data Here
+        var chartData = null;
+        $.ajax({
+            url: '/Bookings/GetLineData',
+            type: 'GET',
+            dataType: 'json',
+            data: '',
+            success: function (d) {
+                chartData = d;
+            },
+            error: function () {
+                alert('Error!');
+            }
+        }).done(function () {
+            drawLineChart(chartData);
+        });
+    };
+    function drawLineChart(chartData) {
+        var data = google.visualization.arrayToDataTable(chartData);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, {
+            type: 'nummber',
+            label: data.getColumnLabel(0),
+            calc: function () { return 0; }
+        }]);
+        
+        var options = {
+            title: "Monthly Lesson in 2020",
+            titleTextStyle: {
+                bold: true,
+                fontSize: 16
+            },
+            curveType: 'function',
+            legend:'none',
+            hAxis: {
+                title: "Month",
+                titleTextStyle: {
+                    fontName: 'sans-serif',
+                    italic: false,
+                    fontSize:12
+                }
+            },
+            vAxis: {
+                minValue: 0,
+                viewWindow: { min: 0 },
+                viewWindowMode: "explicit",
+                maxValue: 10,
+                gridlines: {
+                    count:10
+                },
+                title: "Total Lessons",
+                titleTextStyle: {
+                    fontName: 'sans-serif',
+                    italic: false,
+                    fontSize:12
+                }
+            },
+            animation: {
+                duration: 1000
+            }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById("divLineChart")); 
+        chart.draw(data, options);
+    }  
+</script>
