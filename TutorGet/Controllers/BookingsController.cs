@@ -257,16 +257,27 @@ namespace TutorGet.Controllers
             }
             return new JsonResult { Data = chartData, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+      
 
         [Authorize]
-        public ActionResult Rating(int? id)
+        public ActionResult Rate(int? id)
         {
-           
             Booking booking = db.Bookings.Find(id);
             if (booking == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.Value = booking.Rate;
+            return View(booking);
+        }
+
+        [HttpPost, ActionName("Rate")]
+        public ActionResult RateSaved(int? id, int rating)
+        {
+            Booking booking = db.Bookings.Find(id);
+            booking.Rate = rating;
+            db.SaveChanges();
+            ViewBag.Result = "Rate score has been saved successfully!";
             return View(booking);
         }
 

@@ -1949,6 +1949,7 @@
     <Content Include="Views\Tutors\Search.cshtml" />
     <Content Include="Views\Bookings\Report.cshtml" />
     <Content Include="Views\Bookings\Rating.cshtml" />
+    <Content Include="Views\Bookings\Rate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

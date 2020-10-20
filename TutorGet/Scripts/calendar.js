@@ -31,7 +31,7 @@ $("#calendar").fullCalendar({
             window.location.href = '/Bookings/Edit/' + bookingId;
         })  
         $('#myModal #rating').click(function () {
-            window.location.href = '/Bookings/Rating/' + bookingId;
+            window.location.href = '/Bookings/Rate/' + bookingId;
         })
         $('#myModal #delete').click(function () {
             window.location.href = '/Bookings/Delete/' + bookingId;

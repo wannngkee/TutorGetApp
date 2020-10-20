@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Rate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Rate This Lesson </h3>
+
+@using (Html.BeginForm())
+{
+    if (ViewBag.Result != null)
+    {
+        <div id="myAlert" class="alert alert-success">@ViewBag.Result</div>
+    }
+    else
+    {
+        <div class="k-content">
+            <input id="rating" name="rating" style="width: 100%;" />
+        </div>
+        @*<div class="box" style="display:none">
+                <div>
+                    Old value: <label id=lblOldValue />
+                </div>
+                <div>
+                    New Value: <label id=lblNewValue />
+                </div>
+            </div>*@
+        <div style="padding-left:10px; margin-top:10px;">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Back to Tutor List", "Index")
+    </div>
+}
+
+
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.3.1023/styles/kendo.default-v2.min.css" />
+<script src="https://kendo.cdn.telerik.com/2019.3.1023/js/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2019.3.1023/js/kendo.all.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            $("#rating").kendoRating({
+                min: 1,
+                max: 5,
+                value:@Html.Raw(Json.Encode(ViewBag.Value))
+                //change: onChange,
+            });
+
+            @*function onChange(e) {
+                $("#lblOldValue").text(e.oldValue)
+                $("#lblNewValue").text(e.newValue)
+            }*@
+        });
+    })(jQuery);
+</script>
+
+<style>
+    .k-rating-item.k-state-selected {
+        color: #f4c239
+    }
+
+    .k-rating-item.k-state-hover {
+        color: #f4c239
+    }
+
+    .k-content {
+        color: black
+    }
+</style>
+
+
