@@ -16,7 +16,7 @@ namespace TutorGet.Models
     public partial class UserEvent
     {
         public int Id { get; set; }
-        [Display(Name ="User")]
+        [Display(Name = "User")]
         public string UserId { get; set; }
         [Display(Name = "Event")]
         public int EventId { get; set; }

@@ -258,6 +258,17 @@ namespace TutorGet.Controllers
             return new JsonResult { Data = chartData, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        [Authorize]
+        public ActionResult Rating(int? id)
+        {
+           
+            Booking booking = db.Bookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
 
     }
 

@@ -33,7 +33,7 @@ namespace TutorGet.Utils
            // var api = "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";
             var client = new SendGridClient(API_KEY);
             var from = new EmailAddress("wannngkee@gmail.com", "TutorGet");
-            var tos = new List<EmailAddress>();            
+            var tos = new List<EmailAddress>();
             foreach (var email in emails)
             {
                  tos.Add(new EmailAddress(email, ""));
@@ -44,6 +44,8 @@ namespace TutorGet.Utils
             var showAllRecipients = false;
             var msg = MailHelper.CreateSingleEmailToMultipleRecipients(from, tos, subject, plaintextcontent, htmlcontent, showAllRecipients);
             msg.AddAttachment(filename, content);
+            msg.SetTemplateId("d-20d7e971ac4f4db4a30c5bdef2f829a6");
+            msg.SetAsm(14741);
             var response = client.SendEmailAsync(msg);
         }
 

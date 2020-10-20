@@ -29,9 +29,13 @@ $("#calendar").fullCalendar({
         $('#myModal #pDetails').empty().html($description);
         $('#myModal #edit').click(function () {
             window.location.href = '/Bookings/Edit/' + bookingId;
+        })  
+        $('#myModal #rating').click(function () {
+            window.location.href = '/Bookings/Rating/' + bookingId;
         })
         $('#myModal #delete').click(function () {
             window.location.href = '/Bookings/Delete/' + bookingId;
         })
+
     }
 });

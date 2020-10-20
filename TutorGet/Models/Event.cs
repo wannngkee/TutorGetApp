@@ -22,6 +22,7 @@ namespace TutorGet.Models
         }
     
         public int Id { get; set; }
+
         [Required]
         [Display(Name = "Event")]
         [RegularExpression(@"[a-zA-Z]+$", ErrorMessage = "Invalid name")]
@@ -32,7 +33,7 @@ namespace TutorGet.Models
         [DataType(DataType.DateTime)]
         public System.DateTime Time { get; set; }
         [Required]
-        [RegularExpression(@"^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$", ErrorMessage ="Invalid address")]
+        [RegularExpression(@"^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$", ErrorMessage = "Invalid address")]
         public string Address { get; set; }
         [Required]
         public decimal Latitude { get; set; }

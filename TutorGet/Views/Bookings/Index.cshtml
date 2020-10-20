@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<script type="text/javascript" src="~/Scripts/rate/jquery.js"></script>
+<script type="text/javascript" src="~/Scripts/rate/jRating.jquery.js"></script>
+<link href="~/Content/jRating.jquery.css" rel="stylesheet" />*@
+
 
 <h2 style="text-align: center">@Html.ActionLink("Check My Booking Report", "Report", "Bookings")</h2>
 @*<p>
@@ -11,25 +15,28 @@
     </p>*@
 
 <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
-                </div>
-                <div class="modal-body" style="padding-right:25px">
-                    <p id="pDetails"></p>
-                    <div style="text-align:right">
-                    <span id="edit" class="glyphicon glyphicon-edit" aria-label="Edit" ></span> |
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body" style="padding-right:25px">
+                <p id="pDetails"></p>
+                <div class="rate">
+                <div style="text-align:right">
+                    <span id="edit" class="glyphicon glyphicon-edit" aria-label="Edit"></span> |
+                    <span id="rating" class="glyphicon glyphicon-thumbs-up" aria-label="Rate"></span> |
                     <span id="delete" class="glyphicon glyphicon-trash" aria-label="Delete"></span>
-                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
+</div>
 <div id="calendar"></div>
 <div style="display: none">
     <table class="table">
@@ -59,14 +66,22 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                    @Html.ActionLink("Rate", "Rate", new { id = item.Id })
+
                 </td>
             </tr>
         }
     </table>
 </div>
+@*
+<script type="text/javascript">
+    $(".rate").jRating({
+        step: true,
+        length: 5
+    });
 
-
+</script>*@
 
 @section Scripts {
 

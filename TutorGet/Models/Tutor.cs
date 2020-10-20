@@ -24,16 +24,16 @@ namespace TutorGet.Models
     
         public int Id { get; set; }
         [Required]
-        [RegularExpression("[a-zA-Z]+$",ErrorMessage ="Invalid name")]
+        [RegularExpression("[a-zA-Z]+$", ErrorMessage = "Invalid name")]
         [Display(Name = "Tutor")]
         public string Name { get; set; }
         [Required]
         [Display(Name = "Experience(years)")]
-        [Range(0,20,ErrorMessage ="This value must be bigger than 0")]
+        [Range(0, 20, ErrorMessage = "This value must be bigger than 0")]
         public double Experience { get; set; }
         [Required]
         [Display(Name = "Price($/h)")]
-        [Range(0,60,ErrorMessage = "This value must be bigger than 0")]
+        [Range(0, 60, ErrorMessage = "This value must be bigger than 0")]
         public double HourlyPrice { get; set; }
         [Required]
         [Range(0, 5, ErrorMessage = "Enter valid rate")]

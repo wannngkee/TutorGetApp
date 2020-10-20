@@ -16,7 +16,6 @@ namespace TutorGet.Models
     public partial class Booking
     {
         public int Id { get; set; }
-
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         [Display(Name = "Booking Time")]
@@ -25,6 +24,7 @@ namespace TutorGet.Models
         public string UserId { get; set; }
         [Display(Name = "Tutor")]
         public int TutorId { get; set; }
+        public Nullable<int> Rate { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Tutor Tutor { get; set; }

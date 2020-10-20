@@ -54,6 +54,7 @@
           <Property Name="BookingTime" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="TutorId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="int" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -425,6 +426,7 @@
           <Property Name="TutorId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="TutorGetModel.FK_UserBooking1" FromRole="Booking1" ToRole="AspNetUser" />
           <NavigationProperty Name="Tutor" Relationship="TutorGetModel.FK_TutorBooking1" FromRole="Booking1" ToRole="Tutor" />
+          <Property Name="Rate" Type="Int32" />
         </EntityType>
         <Association Name="FK_UserBooking1">
           <End Type="TutorGetModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -546,6 +548,7 @@
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="TutorGetModel.Booking">
               <MappingFragment StoreEntitySet="Bookings">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="TutorId" ColumnName="TutorId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="BookingTime" ColumnName="BookingTime" />
