@@ -1948,7 +1948,6 @@
     <Content Include="Views\Tutors\Send_Email.cshtml" />
     <Content Include="Views\Tutors\Search.cshtml" />
     <Content Include="Views\Bookings\Report.cshtml" />
-    <Content Include="Views\Bookings\Rating.cshtml" />
     <Content Include="Views\Bookings\Rate.cshtml" />
   </ItemGroup>
   <ItemGroup>

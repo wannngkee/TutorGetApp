@@ -11,7 +11,8 @@ namespace TutorGet.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AspNetUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,12 +28,14 @@ namespace TutorGet.Models
         public Nullable<bool> EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         public Nullable<bool> PhoneNumberConfirmed { get; set; }
         public Nullable<bool> TwoFactorEnabled { get; set; }
         public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
         public Nullable<bool> LockoutEnabled { get; set; }
         public Nullable<int> AccessFailedCount { get; set; }
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
         public string Address { get; set; }
     

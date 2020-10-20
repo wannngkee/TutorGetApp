@@ -25,7 +25,6 @@ namespace TutorGet.Models
 
         [Required]
         [Display(Name = "Event")]
-        [RegularExpression(@"[a-zA-Z]+$", ErrorMessage = "Invalid name")]
         public string EventName { get; set; }
         [Required]
         public string Description { get; set; }

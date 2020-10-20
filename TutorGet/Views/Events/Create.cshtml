@@ -9,7 +9,7 @@
 @if (ViewBag.TheResult == true)
 {
     <div id="myAlert" class="alert alert-success">
-       This event has been created successfully!
+        This event has been created successfully!
     </div>
 }
 
@@ -85,6 +85,8 @@
     @Html.ActionLink("Back to Event List", "Index")
 </div>
 
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
@@ -98,13 +100,14 @@
                 }
             });
         });
-    </script>
-    <script>
-        $(function () {
-            $.validator.methods.date = function (value, element) {
-                return this.optional(element) || moment(value, "DD/MM/YY HH:mm", true).isValid();
-            }
-        });
-    </script>
-
+</script>
+<script>
+                $(function () {
+                    $.validator.methods.date = function (value, element) {
+                        return this.optional(element) || moment(value, "DD/MM/YY HH:mm", true).isValid();
+                    }
+                });
+</script>
 }
+
+
