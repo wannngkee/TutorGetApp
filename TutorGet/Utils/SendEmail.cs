@@ -13,7 +13,7 @@ namespace TutorGet.Utils
     public class SendEmail
     {
         // Please use your API KEY here.
-        private const String API_KEY = "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";
+        private const String API_KEY = "API_KEY";
 
         public void Send(String toEmail, String subject, String contents)
         {
