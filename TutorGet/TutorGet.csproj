@@ -722,10 +722,6 @@
     <Content Include="Content\Infragistics\css\themes\metro\infragistics.theme.css" />
     <Content Include="Content\Infragistics\css\themes\metro\style-guides\style-guide.css" />
     <Content Include="Content\Infragistics\css\themes\metro\style-guides\style-guide.html" />
-    <Content Include="Content\jRating.jquery.css" />
-    <Content Include="Content\kendo.common.min.css" />
-    <Content Include="Content\kendo.default.min.css" />
-    <Content Include="Content\kendo.default.mobile.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.min.css" />
@@ -1804,8 +1800,6 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\rate\jquery.js" />
-    <Content Include="Scripts\rate\jRating.jquery.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />

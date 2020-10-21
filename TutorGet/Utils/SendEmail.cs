@@ -30,7 +30,7 @@ namespace TutorGet.Utils
 
         public void SendBunkAtt(List<string>emails, string filename, string content)
         {
-           // var api = "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";
+           
             var client = new SendGridClient(API_KEY);
             var from = new EmailAddress("wannngkee@gmail.com", "TutorGet");
             var tos = new List<EmailAddress>();
