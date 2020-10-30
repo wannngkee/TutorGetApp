@@ -36,7 +36,6 @@ namespace TutorGet.Models
         [Range(0, 60, ErrorMessage = "This value must be bigger than 0")]
         public double HourlyPrice { get; set; }
         [Required]
-        [Range(0, 5, ErrorMessage = "Enter valid rate")]
         public string Rate { get; set; }
         [Required]
         [EmailAddress]
