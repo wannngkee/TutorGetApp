@@ -13,7 +13,7 @@ namespace TutorGet.Utils
     public class SendEmail
     {
         // Please use your API KEY here.
-        private const String API_KEY = "API_KEY";
+        private const String API_KEY = "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";
 
         public void Send(String toEmail, String subject, String contents)
         {
@@ -44,8 +44,8 @@ namespace TutorGet.Utils
             var showAllRecipients = false;
             var msg = MailHelper.CreateSingleEmailToMultipleRecipients(from, tos, subject, plaintextcontent, htmlcontent, showAllRecipients);
             msg.AddAttachment(filename, content);
-            msg.SetTemplateId("d-20d7e971ac4f4db4a30c5bdef2f829a6");
-            msg.SetAsm(14741);
+            msg.SetTemplateId("d-082f3864be9d45789f969348dd44b8b7");
+            msg.SetAsm(15527);
             var response = client.SendEmailAsync(msg);
         }
 

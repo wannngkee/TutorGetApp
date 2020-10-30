@@ -1699,7 +1699,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\kendo.all.min.js" />
     <Content Include="Scripts\lib\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
     <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
     <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
