@@ -13,12 +13,14 @@ namespace TutorGet.Utils
     public class SendEmail
     {
         // Please use your API KEY here.
-        private const String API_KEY = "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";
+        // Hide API key
+        private const String API_KEY = "API_key";
 
         public void Send(String toEmail, String subject, String contents)
         {
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("wannngkee@gmail.com", "TutorGet");
+            // Hide email address
+            var from = new EmailAddress("email_address", "TutorGet");
             var to = new EmailAddress(toEmail, "");
             var plainTextContent = contents;
             var htmlContent = "<p>" + contents + "</p>";
@@ -32,7 +34,8 @@ namespace TutorGet.Utils
         {
            
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("wannngkee@gmail.com", "TutorGet");
+            // Hide email address
+            var from = new EmailAddress("email_address", "TutorGet");
             var tos = new List<EmailAddress>();
             foreach (var email in emails)
             {
@@ -44,7 +47,8 @@ namespace TutorGet.Utils
             var showAllRecipients = false;
             var msg = MailHelper.CreateSingleEmailToMultipleRecipients(from, tos, subject, plaintextcontent, htmlcontent, showAllRecipients);
             msg.AddAttachment(filename, content);
-            msg.SetTemplateId("d-082f3864be9d45789f969348dd44b8b7");
+            //Hide template Id
+            msg.SetTemplateId("templateId");
             msg.SetAsm(15527);
             var response = client.SendEmailAsync(msg);
         }
