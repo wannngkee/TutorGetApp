@@ -40,7 +40,8 @@ for (i = 0; i < locations.length; i++) {
     data.push(feature)
 }
 
-mapboxgl.accessToken = "pk.eyJ1Ijoid2Fubm5nIiwiYSI6ImNrZjE5dHV2MzE0Z2wzMW51MXY1ZG13bjAifQ.Sp54ZnMvrIn-am2Dx92c7A";
+//Hide access token
+mapboxgl.accessToken = "accessToken";
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
