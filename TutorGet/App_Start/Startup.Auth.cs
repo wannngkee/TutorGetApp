@@ -57,11 +57,12 @@ namespace TutorGet
             //app.UseFacebookAuthentication(
             //   appId: "",
             //   appSecret: "");
-
+            
+            //Hide ClientId and ClientSecret
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "389016786116-9ntk5ph7ians8gvfk69nauqdl7klp0d4.apps.googleusercontent.com",
-                ClientSecret = "8aqOV5MCFEg0n1Ng8sIg3jKq"
+                ClientId = "clientId",
+                ClientSecret = "clientSecret"
             });
         }
     }
