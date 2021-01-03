@@ -12,7 +12,7 @@ Language learners who wants to find a suitable tutor to improve language skills
 * Language exchange activities are marked via an embedded map. The user can bookmark the interested events.
 
 ## Technology
-ASP.NET + HTML + CSS + JavaScript + C#
+ASP.NET + Jquery + Bootstrap + C#
 
 ## API
 * SendGrid
